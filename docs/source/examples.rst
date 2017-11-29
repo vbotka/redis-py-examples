@@ -8,7 +8,7 @@ Create status frequency graph from a log
 
 **Solution:** The loop (30) call function *read_log* which reads the log line by line (13), splits the fields (14) and concatenate date *l[0]* and time *l[1]* in minutes (15). Third field of the log *l[2]* is status of the dpkg operation(install, upgrade, remove ...). Line 16 increments by 1 the score of *word* in the key *l[2]*. As a result the database contains keys(install, upgrade, remove ...) and associated lists of *words* sorted by score. Next loop (33) calls the function *write_csv* with all keys.  As a result csv files are created in the current directory with the *word;score* pairs.
 
-`[source] <../../source/code/create-graph-01.py>`_
+`[source] <../code/create-graph-01.py>`_
 
 .. literalinclude:: code/create-graph-01.py
    :linenos:
