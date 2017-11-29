@@ -37,7 +37,7 @@ To tokenize words from the text we use `NLTK <http://www.nltk.org/>`_. `NLTK dat
 
 .. literalinclude:: code/create-topchart.py
    :linenos:
-   :emphasize-lines: 12, 21, 23
+   :emphasize-lines: 12, 20, 23
 
 **Result:**
 
