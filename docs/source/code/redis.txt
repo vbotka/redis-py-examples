@@ -1,0 +1,354 @@
+   #alternate Edit this page Wikipedia (en)
+
+Redis
+
+   From Wikipedia, the free encyclopedia
+   Jump to: navigation, search
+   This article is about Redis software. For Redis people, see Romani
+   people.
+
+   CAPTION: Redis
+
+   Redis Logo.svg
+      Developer(s)    Salvatore Sanfilippo^[1]^[2]
+    Initial release   May 10, 2009; 8 years ago (2009-05-10)
+     Stable release
+   4.0.2 / September 21, 2017; 2 months ago (2017-09-21)^[3]
+       Repository     github.com/antirez/redis
+   Development status Active
+       Written in     ANSI C
+    Operating system  Cross-platform
+      Available in    English
+          Type        Data structure store
+        License       BSD
+        Website       redis.io
+
+   Redis is an open-source in-memory database project implementing a
+   distributed, in-memory key-value store with optional durability. Redis
+   supports different kinds of abstract data structures, such as strings,
+   lists, maps, sets, sorted sets, hyperloglogs, bitmaps and spatial
+   indexes. The project is mainly developed by Salvatore Sanfilippo and is
+   currently sponsored by Redis Labs.^[4] Redis Labs creates and maintains
+   the official Redis Enterprise Pack.
+
+Contents
+
+     * 1 History
+     * 2 Popularity
+     * 3 Supported languages
+     * 4 Data types
+     * 5 Persistence
+     * 6 Replication
+     * 7 Performance
+     * 8 Clustering
+     * 9 Use cases
+     * 10 See also
+     * 11 Commercial Implementations
+     * 12 References
+     * 13 External links
+
+History[edit]
+
+   The name Redis means REmote DIctionary Server.^[5] Salvatore
+   Sanfilippo, the original developer of Redis, was hired by VMware in
+   March, 2010.^[6]^[7]^[8] In May, 2013, Redis was sponsored by Pivotal
+   Software (a VMware spin-off).^[9] In June 2015, development became
+   sponsored by Redis Labs.^[10]
+
+Popularity[edit]
+
+   According to monthly rankings by DB-Engines, Redis is often ranked the
+   most popular key-value database.^[11] Redis has also been ranked the #4
+   NoSQL database in user satisfaction and market presence based on user
+   reviews,^[12] the most popular NoSQL database in containers,^[13] and
+   the #1 NoSQL database of 2015 by ranking website stackshare.io.^[14]
+
+Supported languages[edit]
+
+   Many languages have Redis bindings, including:^[15] ActionScript, C,
+   C++, C#, Chicken Scheme, Clojure, Common Lisp, D, Dart, Erlang, Go,
+   Haskell, Haxe, Io, Java, JavaScript (Node.js), Julia, Lua, Objective-C,
+   OCaml, Perl, PHP, Pure Data, Python, R^[16], Racket, Ruby, Rust, Scala,
+   Smalltalk and Tcl.
+
+   Several client software programs exist in these languages^[17].
+
+Data types[edit]
+
+   Redis maps keys to types of values. An important difference between
+   Redis and other structured storage systems is that Redis supports not
+   only strings, but also abstract data types:
+     * Lists of strings
+     * Sets of strings (collections of non-repeating unsorted elements)
+     * Sorted sets of strings (collections of non-repeating elements
+       ordered by a floating-point number called score)
+     * Hash tables where keys and values are strings
+     * HyperLogLogs used for approximated set cardinality size estimation.
+     * Geospatial data through the implementation of the geohash technique
+       since Redis 3.2.^[18]
+
+   The type of a value determines what operations (called commands) are
+   available for the value itself. Redis supports high-level, atomic,
+   server-side operations like intersection, union, and difference between
+   sets and sorting of lists, sets and sorted sets.
+
+Persistence[edit]
+
+   Redis typically holds the whole dataset in memory. Versions up to 2.4
+   could be configured to use what they refer to as virtual memory^[19] in
+   which some of the dataset is stored on disk, but this feature is
+   deprecated. Persistence is now achieved in two different ways: one is
+   called snapshotting, and is a semi-persistent durability mode where the
+   dataset is asynchronously transferred from memory to disk from time to
+   time, written in RDB dump format. Since version 1.1 the safer
+   alternative is AOF, an append-only file (a journal) that is written as
+   operations modifying the dataset in memory are processed. Redis is able
+   to rewrite the append-only file in the background in order to avoid an
+   indefinite growth of the journal.
+
+   By default, Redis writes data to a file system at least every 2
+   seconds, with more or less robust options available if needed. In the
+   case of a complete system failure on default settings, only a few
+   seconds of data would be lost.
+
+Replication[edit]
+
+   Redis supports master-slave replication. Data from any Redis server can
+   replicate to any number of slaves. A slave may be a master to another
+   slave. This allows Redis to implement a single-rooted replication tree.
+   Redis slaves can be configured to accept writes, permitting intentional
+   and unintentional inconsistency between instances. The
+   Publish/Subscribe feature is fully implemented, so a client of a slave
+   may SUBSCRIBE to a channel and receive a full feed of messages
+   PUBLISHed to the master, anywhere up the replication tree. Replication
+   is useful for read (but not write) scalability or data redundancy.^[20]
+
+Performance[edit]
+
+   When the durability of data is not needed, the in-memory nature of
+   Redis allows it to perform well compared to database systems that write
+   every change to disk before considering a transaction committed.^[5]
+   Redis operates as a single process and is single-threaded or
+   double-threaded when it rewrites the AOF (append-only file).^[21]
+   Therefore, a single Redis instance cannot utilize parallel execution of
+   tasks such as stored procedures.
+
+Clustering[edit]
+
+   Redis introduced clustering in April 2015 with the release of version
+   3.0.^[22] The cluster specification implements a subset of Redis
+   commands: all single-key commands are available, multi-key operations
+   (commands related to unions and intersections) are restricted to keys
+   belonging to the same node, and commands related to database selection
+   operations are unavailable.^[23] A Redis cluster is able to scale up to
+   1,000 nodes, achieve "acceptable" write safety and to continue
+   operations when some nodes fail.^[24]^[25]
+
+Use cases[edit]
+
+   Due to the nature of the database design, typical use cases are session
+   caching, full page cache, message queue applications, leaderboards and
+   counting among others.^[26] Large companies such as Twitter are using
+   Redis,^[27] and Amazon Web Services is offering Redis in its portfolio.
+
+See also[edit]
+
+     * Free software portal
+
+     * NoSQL
+     * Amazon ElastiCache
+
+Commercial Implementations[edit]
+
+   Some companies have used Redis and created commercial offerings around
+   it:
+     * Redis Enterprise Pack from Redis Labs
+     * Redis Enterprise Cloud and Redis Enterprise Cloud Private from
+       Redis Labs
+     * ElastiCache from Amazon Web Services
+     * Azure Cache from Microsoft Azure
+
+References[edit]
+
+    1. ^ An interview with Salvatore Sanfilippo, creator of Redis, working
+       out of Sicily, January 4, 2011, by Stefano Bernardi, EU-Startups
+    2. ^ Salvatore Sanfilippo – Welcome to Redis Labs, July 15, 2015, By
+       Itamar Haber, Redis Labs
+    3. ^ "Redis 4.0 release notes".
+    4. ^ Kepes, Ben (July 15, 2015),"Redis Labs hires the creator of
+       Redis, Salvatore Sanfilippo", Network World, Retrieved August 30,
+       2015.
+    5. ^ ^a ^b "FAQ, Redis".
+    6. ^ Gwen Shapira (March 17, 2010). "VMware Hires Redis Key Developer
+       – But Why?". Blog. Retrieved September 25, 2016.
+    7. ^ Salvatore Sanfilippo (March 15, 2010). "VMware: the new Redis
+       home". Blog. Retrieved September 25, 2016.
+    8. ^ Derek Collison (March 15, 2010). "VMware: The Console: VMware
+       hires key developer for Redis". Blog. Archived from the original on
+       March 22, 2010. Retrieved September 25, 2016.
+    9. ^ Salvatore Sanfilippo. "Redis Sponsors". Redis Labs. Retrieved
+       September 25, 2016.
+   10. ^ Thanks Pivotal, Hello Redis Labs, July 15, 2015, By Salvatore
+       Sanfilippo, Redis Labs
+   11. ^ DB-Engines Ranking of Key-value Stores
+   12. ^ Best NoSQL Databases: Fall 2015 Report from G2 Crowd
+   13. ^ The Current State of Container Usage
+   14. ^ Top 50 Developer Tools and Services of 2015
+   15. ^ Redis language bindings
+   16. ^ CRAN – Package rredis
+   17. ^ https://redis.io/clients
+   18. ^ Redis 3.2 Release Notes, Retrieved 2017-03-10
+   19. ^ Redis documentation "Virtual Memory", redis.io, accessed January
+       18, 2011.
+   20. ^ ReplicationHowto – redis – A persistent key-value database with
+       built-in net interface written in ANSI-C for Posix systems – Google
+       Project Hosting
+   21. ^ http://antirez.com/news/111
+   22. ^ Redis 3.0 Release Notes, Retrieved 2017-03-10
+   23. ^ Cluster Spec, Retrieved 2017-03-10
+   24. ^ Cluster Spec, Retrieved 2017-03-10
+   25. ^ Cluster Tutorial, Retrieved 2017-03-10
+   26. ^ http://objectrocket.com/blog/how-to/top-5-redis-use-cases
+   27. ^
+       http://highscalability.com/blog/2014/9/8/how-twitter-uses-redis-to-
+       scale-105tb-ram-39mm-qps-10000-ins.html
+
+   Further reading
+
+     * Jeremy Zawodny, Redis: Lightweight key/value Store That Goes the
+       Extra Mile, Linux Magazine, August 31, 2009
+     * Isabel Drost and Jan Lehnard (29 October 2009), Happenings: NoSQL
+       Conference, Berlin, The H. Slides for the Redis presentation.
+       Summary.
+     * Billy Newport (IBM): "Evolving the Key/Value Programming Model to a
+       Higher Level" Qcon Conference 2009 San Francisco.
+     * A Mishra: "Install and configure Redis on Centos/ Fedora server".
+     * E. Mouzakitis: "Monitoring Redis Performance"
+
+External links[edit]
+
+     * Official website
+     * redis on GitHub
+     * Redis Mailing List Archives
+     * Desktop GUI for Redis-Server
+     * What is Redis?
+
+   Retrieved from
+   "https://en.wikipedia.org/w/index.php?title=Redis&oldid=812416308"
+   Categories:
+     * Distributed computing architecture
+     * Free database management systems
+     * Free software programmed in C
+     * Key-value databases
+     * Lua-scriptable software
+     * NoSQL
+     * Structured storage
+
+   Hidden categories:
+     * Pages using deprecated image syntax
+
+Navigation menu
+
+Personal tools
+
+     * Not logged in
+     * Talk
+     * Contributions
+     * Create account
+     * Log in
+
+Namespaces
+
+     * Article
+     * Talk
+
+Variants
+
+Views
+
+     * Read
+     * Edit
+     * View history
+
+More
+
+Search
+
+   ____________________ Search Go
+
+Navigation
+
+     * Main page
+     * Contents
+     * Featured content
+     * Current events
+     * Random article
+     * Donate to Wikipedia
+     * Wikipedia store
+
+Interaction
+
+     * Help
+     * About Wikipedia
+     * Community portal
+     * Recent changes
+     * Contact page
+
+Tools
+
+     * What links here
+     * Related changes
+     * Upload file
+     * Special pages
+     * Permanent link
+     * Page information
+     * Wikidata item
+     * Cite this page
+
+Print/export
+
+     * Create a book
+     * Download as PDF
+     * Printable version
+
+In other projects
+
+     * Wikimedia Commons
+
+Languages
+
+     * Български
+     * Català
+     * Deutsch
+     * Español
+     * فارسی
+     * Français
+     * 한국어
+     * Italiano
+     * עברית
+     * 日本語
+     * Português
+     * Русский
+     * Türkçe
+     * Українська
+     * 中文
+
+   Edit links
+
+     * This page was last edited on 27 November 2017, at 19:20.
+     * Text is available under the Creative Commons Attribution-ShareAlike
+       License; additional terms may apply. By using this site, you agree
+       to the Terms of Use and Privacy Policy. Wikipedia® is a registered
+       trademark of the Wikimedia Foundation, Inc., a non-profit
+       organization.
+
+     * Privacy policy
+     * About Wikipedia
+     * Disclaimers
+     * Contact Wikipedia
+     * Developers
+     * Cookie statement
+     * Mobile view
+
+     * Wikimedia Foundation
+     * Powered by MediaWiki
