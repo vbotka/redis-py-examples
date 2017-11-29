@@ -14,12 +14,13 @@ r.flushdb()
 
 f = open(file, 'r')
 text = f.read()
+f.close()
 words = word_tokenize(text)
+
 for word in words:
     if wordnet.synsets(word):
-        r.zincrby("topchart", word, 1)
-f.close()
+        r.zincrby('topchart', word, 1)
 
-ranking = r.zrange("topchart", 0, 10, 'DESC', 'WITHSCORES')
+ranking = r.zrange('topchart', 0, 10, 'DESC', 'WITHSCORES')
 for x in ranking:
-    print(x[0].decode('utf-8') + ',' + str(int(x[1]))) 
+    print ("%s;%d" % (x[0].decode(), x[1]))
