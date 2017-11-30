@@ -31,7 +31,7 @@ List 10 most used words in a text
 
 .. literalinclude:: code/create-topchart-text.bash
 
-To tokenize words from the text we use `NLTK <http://www.nltk.org/>`_. `NLTK data <http://www.nltk.org/data.html>`_ must be installed by *nltk.download()* (8) before *word_tokenize* (17) and *wordnet.synsets* (19) can be used. Complete NLTK data is over 3GB, hence the download (8) is commented. *zincrby* (20) increments by 1 the score of *word* in the key *topchart* and *zrange* (23) returns top 10 words with scores.
+To tokenize words from the text we use `NLTK <http://www.nltk.org/>`_. `NLTK data <http://www.nltk.org/data.html>`_ must be installed by *nltk.download()* (8) before *word_tokenize* (18) and *wordnet.synsets* (21) can be used. Complete NLTK data is over 3GB, hence the download (8) is commented. *zincrby* (22) increments by 1 the score of *word* in the key *topchart* and *zrange* (24) returns top 10 words with scores.
 
 .. `[source] <../../source/code/create-topchart.py>`_
 
