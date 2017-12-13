@@ -86,7 +86,8 @@ todo_include_todos = False
 #
 # html_theme = 'alabaster'
 # html_theme = 'default'
-html_theme = "sphinx_rtd_theme"
+#html_theme = "sphinx_rtd_theme"
+html_theme = "guzzle_sphinx_theme"
 html_theme_path = ["_themes", ]
 
 # Theme options are theme-specific and customize the look and feel of a theme
