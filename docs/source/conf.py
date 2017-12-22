@@ -31,8 +31,7 @@ sys.path.insert(0, os.path.abspath('.'))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage',
-              'sphinx.ext.viewcode', 'sphinx.ext.githubpages']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage', 'sphinx.ext.viewcode', 'sphinx.ext.githubpages']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -48,6 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'redis-py-examples'
+#copyright = '2017, <a href="http://www.botka.link">Vladimir Botka</a>'
 copyright = '2017, Vladimir Botka'
 author = 'Vladimir Botka'
 
@@ -86,8 +86,9 @@ todo_include_todos = False
 #
 # html_theme = 'alabaster'
 # html_theme = 'default'
-#html_theme = "sphinx_rtd_theme"
-html_theme = "guzzle_sphinx_theme"
+html_theme = "sphinx_rtd_theme"
+#html_theme = "clasic"
+#html_theme = "guzzle_sphinx_theme"
 html_theme_path = ["_themes", ]
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -105,7 +106,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'redis-py-examplesdoc'
+html_help_basename = 'redis-py-examples'
 
 
 # -- Options for LaTeX output ---------------------------------------------
