@@ -23,4 +23,4 @@ for word in words:
 
 ranking = r.zrange('topchart', 0, 10, 'DESC', 'WITHSCORES')
 for x in ranking:
-    print ("%s;%d" % (x[0].decode(), x[1]))
+    print ("%d\t%s" % (x[1], x[0].decode()))

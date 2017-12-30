@@ -44,15 +44,15 @@ To tokenize words from the text we use `NLTK <http://www.nltk.org/>`_. `NLTK dat
 .. code-block:: bash
 
    > ./create-topchart.py
-   is,24
-   a,23
-   in,19
-   edit,13
-   Retrieved,11
-   by,10
-   database,9
-   Labs,9
-   are,8
-   on,7
-   data,7
+   24	is
+   23	a
+   19	in
+   13	edit
+   11	Retrieved
+   10	by
+   9	database
+   9	Labs
+   8	are
+   7	on
+   7	data
 
